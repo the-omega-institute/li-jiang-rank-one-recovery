@@ -1,0 +1,154 @@
+{
+  "sympy": "1.14.0",
+  "all_parameter_identities": {
+    "symbolic_scalar_and_schur_identities": true,
+    "singular_value_invariants": true
+  },
+  "finite_exact_instances": [
+    {
+      "d": 2,
+      "q": "1/4",
+      "p": "45/49",
+      "encoder_matrix_dimension": 8,
+      "trace_preservation": true,
+      "full_complex_quadratic_matrix": true,
+      "optimizer_quartic": "1547476985184256*mu**4 - 881311828934656*mu**3 + 121844684881920*mu**2 - 599610179025",
+      "root_interval": [
+        "2651/7404",
+        "11309/31585"
+      ],
+      "quartic_normalization": true,
+      "decoder_dual_psd_complementarity": true,
+      "quadratic_relaxation_obstruction": true
+    },
+    {
+      "d": 2,
+      "q": "1/2",
+      "p": "9/13",
+      "encoder_matrix_dimension": 8,
+      "trace_preservation": true,
+      "full_complex_quadratic_matrix": true,
+      "optimizer_quartic": "29948379136*mu**4 - 22173319168*mu**3 + 3561492480*mu**2 - 26471025",
+      "root_interval": [
+        "3658/7081",
+        "13807/26727"
+      ],
+      "quartic_normalization": true,
+      "decoder_dual_psd_complementarity": true,
+      "quadratic_relaxation_obstruction": true
+    },
+    {
+      "d": 2,
+      "q": "3/4",
+      "p": "7/19",
+      "encoder_matrix_dimension": 8,
+      "trace_preservation": true,
+      "full_complex_quadratic_matrix": true,
+      "optimizer_quartic": "34982777061376*mu**4 - 32163441410048*mu**3 + 4593178705920*mu**2 - 37692281025",
+      "root_interval": [
+        "12356/16563",
+        "11983/16063"
+      ],
+      "quartic_normalization": true,
+      "decoder_dual_psd_complementarity": true,
+      "quadratic_relaxation_obstruction": true
+    },
+    {
+      "d": 3,
+      "q": "1/4",
+      "p": "40/43",
+      "encoder_matrix_dimension": 27,
+      "trace_preservation": true,
+      "full_complex_quadratic_matrix": true,
+      "optimizer_quartic": "1596405301311681*mu**4 - 1026386828750304*mu**3 - 215892748899072*mu**2 + 67275214110720*mu - 3810295808000",
+      "root_interval": [
+        "14861/19716",
+        "9991/13255"
+      ],
+      "quartic_normalization": true,
+      "decoder_dual_psd_complementarity": true,
+      "quadratic_relaxation_obstruction": true
+    },
+    {
+      "d": 3,
+      "q": "1/2",
+      "p": "8/11",
+      "encoder_matrix_dimension": 27,
+      "trace_preservation": true,
+      "full_complex_quadratic_matrix": true,
+      "optimizer_quartic": "6836598566721*mu**4 - 4456261527102*mu**3 - 1150847519283*mu**2 + 251199430020*mu - 12068784500",
+      "root_interval": [
+        "331/410",
+        "340025/421179"
+      ],
+      "quartic_normalization": true,
+      "decoder_dual_psd_complementarity": true,
+      "quadratic_relaxation_obstruction": true
+    },
+    {
+      "d": 3,
+      "q": "3/4",
+      "p": "56/137",
+      "encoder_matrix_dimension": 27,
+      "trace_preservation": true,
+      "full_complex_quadratic_matrix": true,
+      "optimizer_quartic": "2311278643521*mu**4 - 1529605330992*mu**3 - 533487653568*mu**2 + 56021207040*mu - 1722368000",
+      "root_interval": [
+        "19394/21759",
+        "15507/17398"
+      ],
+      "quartic_normalization": true,
+      "decoder_dual_psd_complementarity": true,
+      "quadratic_relaxation_obstruction": true
+    },
+    {
+      "d": 4,
+      "q": "1/4",
+      "p": "225/241",
+      "encoder_matrix_dimension": 64,
+      "trace_preservation": true,
+      "full_complex_quadratic_matrix": true,
+      "optimizer_quartic": "1336387283176736831303581696*mu**4 - 662225858699362299017166848*mu**3 - 452782254741036504098275328*mu**2 + 57631816499931681158430720*mu - 1739632016454409591690275",
+      "root_interval": [
+        "15169/18059",
+        "11920/14191"
+      ],
+      "quartic_normalization": true,
+      "decoder_dual_psd_complementarity": true,
+      "quadratic_relaxation_obstruction": true
+    },
+    {
+      "d": 4,
+      "q": "1/2",
+      "p": "45/61",
+      "encoder_matrix_dimension": 64,
+      "trace_preservation": true,
+      "full_complex_quadratic_matrix": true,
+      "optimizer_quartic": "21426120288020564279296*mu**4 - 10652577410678005956608*mu**3 - 7899586541873557766144*mu**2 + 765041879845381791744*mu - 18994036667709245571",
+      "root_interval": [
+        "12301/14079",
+        "8738/10001"
+      ],
+      "quartic_normalization": true,
+      "decoder_dual_psd_complementarity": true,
+      "quadratic_relaxation_obstruction": true
+    },
+    {
+      "d": 4,
+      "q": "3/4",
+      "p": "35/83",
+      "encoder_matrix_dimension": 64,
+      "trace_preservation": true,
+      "full_complex_quadratic_matrix": true,
+      "optimizer_quartic": "3261310985889120256*mu**4 - 1627585734862962688*mu**3 - 1373417346916941824*mu**2 + 71609056332447744*mu - 1085058307148211",
+      "root_interval": [
+        "32443/34966",
+        "30347/32707"
+      ],
+      "quartic_normalization": true,
+      "decoder_dual_psd_complementarity": true,
+      "quadratic_relaxation_obstruction": true
+    }
+  ],
+  "lean_run": false
+}

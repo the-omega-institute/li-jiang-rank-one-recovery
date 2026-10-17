@@ -1,0 +1,327 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\N}{\mathcal N}
+\newcommand{\C}{\mathcal C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\HS}{\mathrm{HS}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\F}{F_{\mathrm e}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\title{Exact rank-one encoding with a partial-trace decoder\\for the Li--Jiang two-qubit channel}
+\author{Haobo Ma \and Wenlin Zhang}
+\date{17 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For the two-qubit noise family of Li and Jiang, we determine the exact maximum
+entanglement fidelity over all rank-one completely positive trace-nonincreasing
+encoders when the decoder is the partial trace. For every $0<p<1$, an optimizer
+has columns $x\ket{00}+y\ket{11}$ and $\ket{10}$ with real $x\geq0$, $y\leq0$.
+The optimal fidelity is an explicit algebraic function specified by a unique
+quartic root. The proof reduces the full complex encoder problem to a trace-norm
+maximization and establishes alignment by a convex determinant identity.
+A multistart numerical search with arbitrary CPTP decoders finds no improvement
+on a 100-point noise grid; joint rank-one optimality remains open.
+\end{abstract}
+
+\section{The question and channel}
+Li and Jiang construct a noise family for which higher-rank encoding is
+necessary to attain the unrestricted optimum~\cite{LiJiang}.
+Their polar rank-one encoder attains the optimal quadratic gap coefficient
+as $p\to0^+$, while finite-noise corrections remain undetermined after
+Eq.~(S64). We determine whether the two-column family considered below
+attains the full rank-one optimum with the partial-trace decoder.
+We prove that it does, including
+complex and trace-nonincreasing encoders, and give its exact optimum.
+
+We specialize Eqs.~(18)--(23) of Ref.~\cite{LiJiang} to
+$L=S=\mathbb C^2$, $C=L\otimes S$, and $\tau=I_2/2$.
+The code basis is $(\ket{00},\ket{01},\ket{10},\ket{11})$. Put
+\begin{gather}
+ \psi=\frac{\ket{00}+\ket{11}}{\sqrt2},\qquad
+ \Pi=\ket\psi\bra\psi,\qquad D_j=I_2\otimes\bra j,\notag\\
+ \lambda_1=1-\frac p2,\quad
+ \lambda_2=\frac{p(3-2p)}{2(3+p)},\quad
+ \lambda_3=\frac{p^2}{2(3+p)},\quad
+ \lambda_4=\frac{3+p}{4},\quad \lambda_5=\frac{1-p}{4},\label{eq:lambda}\\
+ a=\sqrt{\frac{3+p}{6}},\quad b=\sqrt{\frac{1-p}{2}},\quad
+ Q=a(I_4-\Pi)+b\Pi.\notag
+\end{gather}
+For $i,j\in\{0,1\}$ define
+\[
+ E_{ij}=\frac{\ket{ij}\bra\psi-\sqrt{\lambda_5}D_j^\dagger D_iQ}
+ {\sqrt{\lambda_4}}.
+\]
+The literal noise action is
+\begin{equation}\label{eq:noise}
+ \N_p(X)=\lambda_3\tr(X)I_4+
+ (\lambda_1-\lambda_3)\tr_S(QXQ)\otimes I_2
+ +\lambda_2\sum_{i,j}E_{ij}XE_{ij}^\dagger.
+\end{equation}
+For a logical map with Kraus operators $L_\alpha$, our convention is
+\begin{equation}\label{eq:fidelity}
+ \F(\tau,\Phi)=\frac14\sum_\alpha|\tr L_\alpha|^2.
+\end{equation}
+This is the unrenormalized entanglement fidelity, including for maps that
+are trace-nonincreasing. A rank-one encoder is
+$\C_V(X)=VXV^\dagger$, $V\in\mathbb C^{4\times2}$,
+$V^\dagger V\preceq I_2$. Write
+\[
+ F_*(p)=\max_{V^\dagger V\preceq I_2}
+ \F(\tau,\tr_S\circ\N_p\circ\C_V).
+\]
+
+\section{Exact optimum}
+\begin{theorem}\label{thm:main}
+For every $0<p<1$, the maximum $F_*(p)$ is attained by
+\begin{equation}\label{eq:family}
+ V(x,y)=\begin{pmatrix}x&0\\0&0\\0&1\\y&0\end{pmatrix},
+ \qquad x^2+y^2=1,\quad x>0,\ y<0.
+\end{equation}
+Define
+\begin{gather}
+ k=\frac{3-2p}{3+p},\qquad h=\frac{1+p}{2},\qquad
+ w=\sqrt{\frac{(3+p)(1-p)}{12}},\notag\\
+ A=k(h+w),\qquad B=k(h-w).\label{eq:AB}
+\end{gather}
+Let $\eta>A$ be the unique root in that interval of
+\begin{equation}\label{eq:quartic}
+ \eta^4-2(A+B)\eta^3+4AB\eta^2-(AB)^2=0.
+\end{equation}
+Then
+\begin{equation}\label{eq:answer}
+ \boxed{F_*(p)=\frac14\left(1+\eta+
+ \frac{A^2}{\eta-A}+\frac{B^2}{\eta-B}\right)},
+ \qquad
+ x_* =\frac{A}{\eta-A},\quad y_*=-\frac{B}{\eta-B}.
+\end{equation}
+Equivalently, $\eta=k\mu$, where $\mu>h+w$ is the unique root there of
+\begin{equation}\label{eq:quarticp}
+ 9\mu^4-18(1+p)\mu^3+12p(p+2)\mu^2-p^2(p+2)^2=0.
+\end{equation}
+\end{theorem}
+
+\subsection{The quadratic form and contraction reduction}
+A Kraus family for~\eqref{eq:noise} consists of
+\[
+ \sqrt{\lambda_3}\ket u\bra v,\qquad
+ \sqrt{\lambda_1-\lambda_3}(I_2\otimes\ket s\bra t)Q,
+ \qquad \sqrt{\lambda_2}E_{ij},
+\]
+with respectively $16$, $4$, and $4$ operators. Put
+\[
+ C_i=QD_i^\dagger,\quad S_i=\ket\psi\bra i,\quad
+ H_i=\frac{S_i-\sqrt{\lambda_5}C_i}{\sqrt{\lambda_4}},\quad
+ \beta=\frac{\lambda_1-\lambda_3}{2},\quad
+ \delta=\frac{\lambda_2}{2}.
+\]
+The identity
+\[
+ D_\ell E_{ij}=\frac{\delta_{\ell j}}{\sqrt{\lambda_4}}
+ \left(\ket i\bra\psi-\sqrt{\lambda_5}D_iQ\right)
+\]
+and the Kraus trace formula give, for every complex $V$,
+\begin{equation}\label{eq:quadratic}
+ F_p(V)=\frac{\lambda_3}{2}\|V\|_{\HS}^2+
+ \beta\sum_i|\langle C_i,V\rangle_{\HS}|^2+
+ \delta\sum_i|\langle H_i,V\rangle_{\HS}|^2.
+\end{equation}
+Here $\langle X,Y\rangle_{\HS}=\tr(X^\dagger Y)$.
+In particular, this is a positive semidefinite quadratic form on the full
+eight-dimensional complex encoder space. Directly,
+\begin{equation}\label{eq:orthogonal}
+ \langle C_i,C_j\rangle_{\HS}=\langle H_i,H_j\rangle_{\HS}=\delta_{ij},
+ \qquad \langle C_i,H_j\rangle_{\HS}=0.
+\end{equation}
+For example, $Q^2=(3+p)I_4/6-(2p/3)\Pi$ yields the first identity,
+and $\langle C_i,S_j\rangle_{\HS}=\sqrt{\lambda_5}\delta_{ij}$ yields the others.
+
+For completeness, the contraction reduction of Lemma~S1 in Ref.~\cite{LiJiang}
+has a short proof here. Extend the polar factor of a contraction to an
+isometry $U$, so $V=UT$, $0\preceq T\preceq I_2$. The two matrices
+\[
+ V_\pm=U\bigl(T\pm i\sqrt{I_2-T^2}\bigr)
+\]
+are isometries with $V=(V_++V_-)/2$. For a positive quadratic form $q$,
+\[
+ \frac{q(V_+)+q(V_-)}2-q(V)=\frac14q(V_+-V_-)\geq0.
+\]
+Thus at least one isometry has fidelity no smaller than $V$.
+It suffices to maximize~\eqref{eq:quadratic} over $V^\dagger V=I_2$,
+where the first term is $\lambda_3$.
+
+\subsection{Trace norm and alignment}
+For spinors $r,s\in\mathbb C^2$ define
+\[
+ C(r)=\sum_i r_iC_i,\qquad H(s)=\sum_i s_iH_i,\qquad
+ M(r,s)=\sqrt\beta C(r)+\sqrt\delta H(s).
+\]
+Cauchy--Schwarz duality followed by the polar decomposition gives
+\begin{align}
+ F_*(p)-\lambda_3
+ &=\max_{\|r\|^2+\|s\|^2=1}\;
+ \max_{V^\dagger V=I_2}|\tr(M(r,s)^\dagger V)|^2\notag\\
+ &=\max_{\|r\|^2+\|s\|^2=1}\|M(r,s)\|_1^2.\label{eq:tracenorm}
+\end{align}
+Here $\|M\|_1$ is the sum of its singular values. The polar factor attains
+the inner maximum, extending to an isometry if needed.
+
+For $U\in U(2)$, set $W_U=U\otimes\overline U$.
+Since $W_U\psi=\psi$ and $W_UQ=QW_U$,
+\[
+ W_UC(r)U^\dagger=C(\overline U r),\qquad
+ W_UH(s)U^\dagger=H(\overline U s).
+\]
+These identities preserve trace norm. Hence, for fixed norms $R,S$, we may
+write $r=R(1,0)^T$, $s=S(c,d)^T$, with $d\geq0$,
+$|c|^2+d^2=1$. The case $R=0$ is covered by the same choice using the
+full unitary freedom. Write $c=X+iY$ and put
+\[
+ t=\frac ba=\sqrt{\frac{3(1-p)}{3+p}}\in(0,1),\quad
+ u=\sqrt\beta R,\quad v=\sqrt\delta S.
+\]
+Thus $M=uC_0+v[(X+iY)H_0+dH_1]$. Direct multiplication, using
+$d^2=1-X^2-Y^2$, yields
+\begin{gather}
+ \tr(M^\dagger M)=u^2+v^2,\notag\\
+ \det(M^\dagger M)=D_0+D_1X+D_xX^2+D_yY^2,\label{eq:det}\\
+ D_0=\frac{18(1+t^2)u^4+2t^2(t^2+9)v^4+
+ 3(t^4-2t^2+9)u^2v^2}{9(t^2+3)^2},\notag\\
+ D_1=\frac{4\sqrt3\,tuv[3(1-t^2)u^2-(9-t^2)v^2]}{9(t^2+3)^2},\notag\\
+ D_x=\frac{u^2v^2(1-t^2)(9-t^2)}{3(t^2+3)^2}\geq0,
+ \qquad D_y=\frac{u^2v^2}{3}\geq0.\notag
+\end{gather}
+This proves that the determinant is convex on the disk $X^2+Y^2\leq1$.
+Its maximum occurs on the boundary: express any interior point as a convex
+combination of boundary points and use convexity. Since the trace is fixed and
+\[
+ \|M\|_1^2=\tr(M^\dagger M)+2\sqrt{\det(M^\dagger M)},
+\]
+a trace-norm maximizer also occurs on the boundary. Therefore $d=0$ and
+$r,s$ may be chosen collinear. Their relative phase need not be fixed in
+this step.
+
+For collinear spinors the first column of $M$ lies in
+$\operatorname{span}\{\ket{00},\ket{11}\}$ and the second lies in
+$\operatorname{span}\{\ket{10}\}$. Its polar isometry has the same form,
+with arbitrary isometric extensions chosen in these spaces when a column
+vanishes. After an irrelevant common phase it is $V(x,y)$ with complex
+$x,y$ satisfying $|x|^2+|y|^2=1$. Choose a maximizing collinear pair $(r,s)$
+and such a polar isometry $V$. The inner product in~\eqref{eq:tracenorm}
+then has squared modulus $F_*(p)-\lambda_3$. Duality gives
+$F_p(V)-\lambda_3$ at least this value, so this complex two-column family
+attains the full maximum.
+
+\subsection{Phases and the circle maximum}
+Substitution in~\eqref{eq:quadratic} and use of $|x|^2+|y|^2=1$ give
+\begin{equation}\label{eq:familyf}
+ F_p(V(x,y))=\frac14\left[
+ 1+A(|x|^2+2\Re x)+B(|y|^2-2\Re y)\right].
+\end{equation}
+The coefficients obey $A>B>0$, since $k>0$, $w>0$, and
+$h^2-w^2=p(p+2)/3>0$. Thus replacing $x$ by $|x|$ and $y$ by $-|y|$
+cannot decrease fidelity. Set $U=x\geq0$, $W=-y\geq0$,
+$U^2+W^2=1$. For every $\eta>A$,
+\begin{align}
+ &\eta+\frac{A^2}{\eta-A}+\frac{B^2}{\eta-B}
+ -[A(U^2+2U)+B(W^2+2W)]\notag\\
+ &\hspace{12mm}=(\eta-A)\left(U-\frac{A}{\eta-A}\right)^2
+ +(\eta-B)\left(W-\frac{B}{\eta-B}\right)^2.\label{eq:sos}
+\end{align}
+This is a matching global upper bound when
+\begin{equation}\label{eq:secular}
+ \frac{A^2}{(\eta-A)^2}+\frac{B^2}{(\eta-B)^2}=1.
+\end{equation}
+The left side decreases strictly from infinity to zero on $(A,\infty)$,
+so there is exactly one solution there. Clearing its positive denominators
+gives~\eqref{eq:quartic}; substitution gives~\eqref{eq:answer}.
+Using $A+B=k(1+p)$ and $AB=k^2p(p+2)/3$ gives~\eqref{eq:quarticp}.
+This completes the proof of Theorem~\ref{thm:main}.
+
+\section{Checks, decoder optimization, and scope}
+At $p=9/13$, $A=105/208$, $B=49/208$, and
+\[
+ x_*\approx0.9553880907,\qquad y_*\approx-0.2953533412,\qquad
+ F_*(9/13)\approx0.6462632754.
+\]
+On the real circle, Eq.~\eqref{eq:familyf} is equivalently
+\[
+ F_{9/13}(V(x,y))=\frac{132x^2+210x+76y^2-98y+181}{832}.
+\]
+The polar choice $(3/\sqrt{10},-1/\sqrt{10})$ has fidelity
+$0.6461704491\ldots$, and $(24/25,-7/25)$ has fidelity
+$0.6462134615\ldots$. Both are strictly below the new maximum.
+The endpoint checks are
+\begin{equation}
+ F_*(p)=1-\frac p2-\frac{p^2}{36}+O(p^3),\qquad
+ \lim_{p\to1^-}F_*(p)=\frac{5+2\sqrt2}{16}.
+\end{equation}
+The first follows from $A=1-2p/3-p^2/9+O(p^3)$,
+$B=2p/3+O(p^2)$, $W_*=p/3+O(p^2)$, and
+$U_*=1-p^2/18+O(p^3)$. It agrees with the quadratic gap in
+Ref.~\cite{LiJiang}.
+
+We also optimized an arbitrary CPTP decoder numerically. This decoder class
+suffices for the joint optimum: completing any CPTNI decoder by adding
+$X\mapsto\tr[(I_4-\D^\dagger(I_2))X]\ket0\bra0$ makes it trace preserving
+and cannot decrease the unrenormalized fidelity
+(Ref.~\cite{LiJiang}, Sec.~S3.D).
+For fixed $V$, put $L_\alpha=K_\alpha V$ and
+$g_\alpha=\operatorname{vec}_{\rm row}(L_\alpha^T)$.
+If $J_\D=\sum_\ell\operatorname{vec}_{\rm row}(D_\ell)
+\operatorname{vec}_{\rm row}(D_\ell)^\dagger$, then
+\begin{equation}
+ R_V=\frac14\sum_\alpha\overline{g_\alpha}g_\alpha^T,\qquad
+ \max_{J_\D\succeq0,\ \tr_{\rm out}J_\D=I_4}\tr(J_\D R_V)
+ =\min_{I_2\otimes Y\succeq R_V}\tr Y.\label{eq:sdp}
+\end{equation}
+Here $Y$ is Hermitian. We alternated this decoder SDP with polar
+Reimpell--Werner encoder updates, as in Algorithm~2 of Ref.~\cite{LiJiang}.
+At each of $p=k/100$ ($1\leq k\leq99$) and $p=9/13$, we used eight starts:
+the encoder in~\eqref{eq:answer} and seven independent complex Gaussian
+polar factors.
+Decoder SDPs used CLARABEL; the maximum observed primal/adjusted-dual
+gap was below $3.9\times10^{-9}$. These are floating-point bounds, and
+the saved encoder isometry and decoder trace-preservation residuals
+were below $3\times10^{-15}$. All 800 runs stopped below a
+$2\times10^{-10}$ outer fidelity increment. No decoder improvement over
+$F_*(p)$ was found within $10^{-8}$. Representative exact-formula values are
+\begin{center}
+\begin{tabular}{rrrrrr}
+\toprule
+$p$ & $0.10$ & $0.25$ & $0.50$ & $0.75$ & $0.90$\\
+\midrule
+$F_*(p)$ & $0.949740515$ & $0.873544787$ & $0.745246955$ & $0.616635242$ & $0.539960567$\\
+\bottomrule
+\end{tabular}
+\end{center}
+These finite computations support equality of the joint rank-one optimum
+and $F_*(p)$; they do not prove it. A uniform bound with a variable decoder
+remains open.
+
+Li and Jiang prove that the unrestricted optimum is $\lambda_1=1-p/2$
+and every attaining pair has encoder Choi rank at least two for
+$0<p<1$~\cite{LiJiang}. Theorem~\ref{thm:main} gives an exact
+fixed-decoder rank-one benchmark for their example.
+
+Accompanying scripts check Kraus completeness, orthogonality, and the
+quadratic, determinant, family, and quartic identities in exact arithmetic
+with $p=3(1-t^2)/(3+t^2)$. Reproduction details and numerical witnesses
+with feasibility residuals accompany the note. The proof is independent
+of the numerical search.
+
+\begin{thebibliography}{1}
+\bibitem{LiJiang}
+B. Li and L. Jiang,
+\emph{High-Rank Encoding Can Improve Approximate Quantum Error Correction},
+arXiv:2609.00778v1 (2026),
+\url{https://arxiv.org/abs/2609.00778v1}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,9 @@
+{
+  "scope": "floating-point direct physical Kraus recomputation of all saved witnesses",
+  "witness_count": 12,
+  "physical_kraus_count": 99,
+  "max_fidelity_difference": 6.661338147750939e-16,
+  "max_encoder_residual": 2.125786305101367e-15,
+  "max_decoder_residual": 2.337808314997233e-15,
+  "physical_noise_tp_residual": 1.077608212648866e-15
+}

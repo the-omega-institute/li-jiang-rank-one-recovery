@@ -1,0 +1,13 @@
+{
+  "points": 100,
+  "saved_witnesses": 100,
+  "saved_runs": 800,
+  "max_isometry_residual": 1.1345743030166432e-15,
+  "max_decoder_tp_residual": 2.8815994439682072e-15,
+  "max_fidelity_recompute_error": 0.0,
+  "max_choi_cost_error": 3.3306690738754696e-16,
+  "max_covariance_error": 2.220446049250313e-15,
+  "random_encoders_checked": 4000,
+  "max_random_encoder_excess": -0.08418559480508647,
+  "worst_start_final_loss_vs_family": 3.2702581753696336e-09
+}

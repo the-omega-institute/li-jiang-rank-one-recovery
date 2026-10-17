@@ -1,0 +1,10 @@
+PASS exact matrix/certificate instance 2 1/4
+PASS exact matrix/certificate instance 2 1/2
+PASS exact matrix/certificate instance 2 3/4
+PASS exact matrix/certificate instance 3 1/4
+PASS exact matrix/certificate instance 3 1/2
+PASS exact matrix/certificate instance 3 3/4
+PASS exact matrix/certificate instance 4 1/4
+PASS exact matrix/certificate instance 4 1/2
+PASS exact matrix/certificate instance 4 3/4
+PASS symbolic identities and all 9 exact instances; no Lean run.

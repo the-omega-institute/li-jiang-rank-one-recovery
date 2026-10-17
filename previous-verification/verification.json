@@ -1,0 +1,26 @@
+{
+  "method": "Exact SymPy rational/algebraic arithmetic; constructed from source Eqs. (18), (22), (23), independently of Lean execution.",
+  "noise_kraus_count": 24,
+  "composite_kraus_count": 48,
+  "lambda_values": [
+    "17/26",
+    "63/416",
+    "27/416",
+    "12/13",
+    "1/13"
+  ],
+  "kraus_completeness": true,
+  "literal_eq23_matches_on_all_16_matrix_units": true,
+  "group_fidelity_polynomials": [
+    "27*x**2/832 + 27*y**2/832 + 27/832",
+    "2205*x**2/21632 - 735*x*y/10816 + 735*x/2704 + 245*y**2/21632 - 245*y/2704 + 245/1352",
+    "525*x**2/21632 + 735*x*y/10816 - 105*x/5408 + 1029*y**2/21632 - 147*y/5408 + 21/5408"
+  ],
+  "fidelity_polynomial": "(132*x**2 + 210*x + 76*y**2 - 98*y + 181)/832",
+  "polar_fidelity": "7*sqrt(10)/80 + 1537/4160",
+  "competitor_fidelity": "336031/520000",
+  "gain": "71953/260000 - 7*sqrt(10)/80",
+  "gain_decimal": "4.301242757450076e-5",
+  "square_gap": 32841,
+  "new_lean_run": false
+}

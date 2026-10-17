@@ -1,0 +1,23 @@
+{
+  "sympy": "1.14.0",
+  "parameterization": "p=3(1-t^2)/(3+t^2), 0<t<1",
+  "kraus_completeness": true,
+  "orthonormality": true,
+  "full_8_by_8_quadratic_form": true,
+  "complex_family_formula_modulo_norm": true,
+  "determinant_identity": true,
+  "determinant_coefficients": {
+    "D0": "(3*t**4*u**2*v**2 + 2*t**4*v**4 + 18*t**2*u**4 - 6*t**2*u**2*v**2 + 18*t**2*v**4 + 18*u**4 + 27*u**2*v**2)/(9*(t**2 + 3)**2)",
+    "D1": "4*sqrt(3)*t*u*v*(u**2*(3 - 3*t**2) - v**2*(9 - t**2))/(9*(t**2 + 3)**2)",
+    "Dx": "u**2*v**2*(1 - t**2)*(9 - t**2)/(3*(t**2 + 3)**2)",
+    "Dy": "u**2*v**2/3"
+  },
+  "secular_quartic": true,
+  "circle_upper_bound_sum_of_squares": true,
+  "normalized_quartic": true,
+  "p_9_over_13_consistency": true,
+  "asymptotic_series": "1 - p/2 - p**2/36 + O(p**3)",
+  "stationarity_small_p": true,
+  "p_to_one_limit": true,
+  "new_lean_run": false
+}

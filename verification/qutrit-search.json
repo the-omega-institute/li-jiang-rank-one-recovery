@@ -1,0 +1,115 @@
+{
+  "status": "floating point search, not a global or interval certificate",
+  "d": 3,
+  "q": 0.5,
+  "p": 0.7272727272727273,
+  "fixed_decoder_benchmark": 0.8922491435999235,
+  "seed": 20261017,
+  "outer_cap": 60,
+  "encoder_inner_cap": 150,
+  "outer_increment_threshold": 1e-10,
+  "encoder_increment_threshold": 1e-13,
+  "decoder_solver": "CLARABEL",
+  "nominal_decoder_tolerances": 1e-10,
+  "numpy": "2.5.2",
+  "scipy": "1.18.1",
+  "cvxpy": "1.9.3",
+  "runs": [
+    {
+      "start": 0,
+      "outer_steps": 4,
+      "fidelity": 0.8922491435936332,
+      "excess_over_fixed": -6.290301612921212e-12,
+      "encoder_residual": 4.2651356882163577e-16,
+      "decoder_residual": 2.493580268604893e-16
+    },
+    {
+      "start": 1,
+      "outer_steps": 4,
+      "fidelity": 0.8922491429716654,
+      "excess_over_fixed": -6.282581122007969e-10,
+      "encoder_residual": 1.5395277477395956e-15,
+      "decoder_residual": 1.0517585010677639e-15
+    },
+    {
+      "start": 2,
+      "outer_steps": 4,
+      "fidelity": 0.8922491429716819,
+      "excess_over_fixed": -6.282415698777299e-10,
+      "encoder_residual": 1.0505036211902775e-15,
+      "decoder_residual": 9.463407508588806e-16
+    },
+    {
+      "start": 3,
+      "outer_steps": 4,
+      "fidelity": 0.8922491429716778,
+      "excess_over_fixed": -6.282456777029211e-10,
+      "encoder_residual": 2.125786305101367e-15,
+      "decoder_residual": 2.0729567897054668e-15
+    },
+    {
+      "start": 4,
+      "outer_steps": 4,
+      "fidelity": 0.8922491429716806,
+      "excess_over_fixed": -6.282429021453595e-10,
+      "encoder_residual": 5.372495598053821e-16,
+      "decoder_residual": 1.0990230528747966e-15
+    },
+    {
+      "start": 5,
+      "outer_steps": 4,
+      "fidelity": 0.8922491429716849,
+      "excess_over_fixed": -6.282385722755635e-10,
+      "encoder_residual": 7.783710229175847e-16,
+      "decoder_residual": 1.3363500906488542e-15
+    },
+    {
+      "start": 6,
+      "outer_steps": 4,
+      "fidelity": 0.8922491429716763,
+      "excess_over_fixed": -6.282471209928531e-10,
+      "encoder_residual": 1.0007415106216803e-15,
+      "decoder_residual": 2.337808314997233e-15
+    },
+    {
+      "start": 7,
+      "outer_steps": 4,
+      "fidelity": 0.8922491429716823,
+      "excess_over_fixed": -6.282411257885201e-10,
+      "encoder_residual": 1.085333760082114e-15,
+      "decoder_residual": 7.503783736227836e-16
+    },
+    {
+      "start": 8,
+      "outer_steps": 4,
+      "fidelity": 0.892249142971679,
+      "excess_over_fixed": -6.28244456457594e-10,
+      "encoder_residual": 6.557162954239055e-16,
+      "decoder_residual": 2.0165942894741015e-15
+    },
+    {
+      "start": 9,
+      "outer_steps": 4,
+      "fidelity": 0.8922491429716845,
+      "excess_over_fixed": -6.282390163647733e-10,
+      "encoder_residual": 6.1721061478217895e-16,
+      "decoder_residual": 1.0030119157979213e-15
+    },
+    {
+      "start": 10,
+      "outer_steps": 4,
+      "fidelity": 0.8922491429716813,
+      "excess_over_fixed": -6.282421249892423e-10,
+      "encoder_residual": 9.979500953322845e-16,
+      "decoder_residual": 1.550828334790018e-15
+    },
+    {
+      "start": 11,
+      "outer_steps": 4,
+      "fidelity": 0.8922491429716806,
+      "excess_over_fixed": -6.282429021453595e-10,
+      "encoder_residual": 5.175003162299724e-16,
+      "decoder_residual": 9.142952113064652e-16
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+Verification material by Haobo Ma and Wenlin Zhang, 17 October 2026.
+Channel source: Bikun Li and Liang Jiang, arXiv:2609.00778v1.
+
+The current exact and numerical Python scripts and the earlier qubit scripts
+are preserved byte for byte from the prepared verification material. Saved
+numerical searches are retained; the publication checks rerun the exact
+checkers and recompute the saved witnesses rather than rerunning the searches.
+
+Publication edits update documentation and dependency pins, add the code
+license, and remove nonmathematical context from the note introductions.
+The PDF notes are rebuilt from those sources. SHA256SUMS identifies the
+published content. No mathematical statement or verification algorithm was
+changed for publication.

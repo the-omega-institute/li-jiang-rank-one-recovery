@@ -1,0 +1,461 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\ket}[1]{\lvert#1\rangle}
+\newcommand{\bra}[1]{\langle#1\rvert}
+\newcommand{\N}{\mathcal N}
+\newcommand{\T}{\mathcal T}
+\newcommand{\R}{\mathcal R}
+\newcommand{\C}{\mathcal C}
+\newcommand{\F}{F_{\mathrm e}}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\title{Rank-one encoding and recovery for the Li--Jiang channel}
+\author{Haobo Ma \and Wenlin Zhang}
+\date{17 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For the Li--Jiang noise family, we prove that the partial-trace decoder can
+be chosen in a jointly optimal rank-one encoder--decoder pair when the
+logical dimension is two, for every $0<p<1$. In every logical dimension
+$d\ge2$, we determine the full complex rank-one optimum with partial trace
+fixed, by a two-amplitude reduction and a specified quartic root.
+An explicit decoder SDP dual certificate proves that partial trace is an
+optimal decoder for every encoder in this real family. Joint global
+optimality for $d\ge3$ remains open. We give an exact qutrit instance and an
+obstruction to the quadratic relaxation of the remaining global inequality.
+\end{abstract}
+
+\section{The channel and the joint question}
+Li and Jiang~\cite{LiJiang} construct a noise family whose unrestricted
+optimal fidelity requires higher-rank encoding. We study whether the
+partial-trace decoder can be chosen in a jointly optimal rank-one pair,
+and determine the exact fidelity when that decoder is fixed.
+Theorem~\ref{thm:qubit} answers the
+joint question for $d=2$. Theorem~\ref{thm:fixed} gives the fixed-decoder
+formula for all $d$, and Proposition~\ref{prop:decoder} supplies a matching
+decoder certificate throughout the attaining family. These last two
+certificates are best-response statements; their combination does not prove
+joint global optimality for $d\ge3$.
+
+We use the model of Eqs.~(18)--(23) of Ref.~\cite{LiJiang}. Let
+$L=S=\mathbb C^d$, $C=L\otimes S$, $\tau=I_d/d$, and
+\[
+ \ket\Omega=d^{-1/2}\sum_{i=0}^{d-1}\ket{ii},\quad
+ P=\ket\Omega\bra\Omega,\quad D_i=I_d\otimes\bra i.
+\]
+For $0<p<1$ set
+\begin{gather}
+ \lambda_1=1-\frac p{d^2-2},\quad
+ \lambda_4=\frac{d^2-1+p}{d^2},\quad\lambda_5=\frac{1-p}{d^2},\notag\\
+ \lambda_2=\frac{(1-\lambda_1)(d^2\lambda_1-1)}{d^2\lambda_4},\qquad
+ \lambda_3=\frac{2(1-\lambda_1)^2}{d^2\lambda_4},\notag\\
+ a=\sqrt{\frac{d\lambda_4}{d^2-1}},\quad b=\sqrt{d\lambda_5},\quad
+ Q=a(I-P)+bP.\label{eq:parameters}
+\end{gather}
+The noise action is
+\begin{align}
+ \N_p(X)&=\lambda_3\tr(X)I_C+
+ (\lambda_1-\lambda_3)\tr_S(QXQ)\otimes I_S
+ +\lambda_2\sum_{i,j}E_{ij}XE_{ij}^\dagger,\label{eq:noise}\\
+ E_{ij}&=\frac{\ket{ij}\bra\Omega-\sqrt{\lambda_5}D_j^\dagger D_iQ}
+ {\sqrt{\lambda_4}}.\notag
+\end{align}
+A rank-one CPTNI encoder is $\C_V(X)=VXV^\dagger$, with
+$V\in\mathbb C^{d^2\times d}$ and $V^\dagger V\preceq I_d$.
+For logical Kraus operators $L_k$, fidelity means the unrenormalized quantity
+\begin{equation}\label{eq:fidelity}
+ \F(\tau,\Phi)=d^{-2}\sum_k|\tr L_k|^2.
+\end{equation}
+Let $f_d(p)$ be the maximum with decoder $\tr_S$ fixed, and $F_1^{\rm joint}(p,d)$
+the maximum allowing arbitrary CPTNI decoders as well.
+
+\section{The decoder reduction and the qubit case}
+Define
+\[
+ e_i=\frac{\ket i\bra\Omega-\sqrt{\lambda_5}D_iQ}{\sqrt{\lambda_4}}.
+\]
+Since $E_{ij}=(I\otimes\ket j)e_i$, summing over $j$ in
+\eqref{eq:noise} gives the exact identity
+\begin{equation}\label{eq:factorization}
+ \N_p(X)=\T_p(X)\otimes I_S/d,\qquad
+ \T_p(X)=d\lambda_3\tr(X)I_d+
+ d(\lambda_1-\lambda_3)\tr_S(QXQ)+d\lambda_2\sum_i e_iXe_i^\dagger.
+\end{equation}
+Thus every CPTP physical decoder $\mathcal D:C\to L$ induces the CPTP
+map $\R(X)=\mathcal D(X\otimes I_S/d)$, with
+$\mathcal D\N_p=\R\T_p$. Conversely $\R$ is realized by
+$\mathcal D=\R\tr_S$. The decoder Choi variable therefore has dimension
+$d^2\times d^2$ rather than $d^3\times d^3$.
+
+Trace loss cannot help. Completing a CPTNI decoder to a CPTP decoder adds
+nonnegative terms to \eqref{eq:fidelity}. For a fixed decoder, fidelity is a
+positive quadratic form $q(V)$. Complete the polar decomposition of a
+contraction as $V=UH$, $U^\dagger U=I_d$, $0\preceq H\preceq I_d$.
+Then $V_\pm=U(H\pm i\sqrt{I-H^2})$ are isometries, and
+\[
+ \frac{q(V_+)+q(V_-)}2-q(V)=\frac14q(V_+-V_-)\ge0.
+\]
+An isometric encoder and CPTP decoder attain the joint maximum. This is the
+contraction argument of Lemma~S1 of Ref.~\cite{LiJiang}.
+
+\begin{theorem}\label{thm:qubit}
+For every $0<p<1$, $F_1^{\rm joint}(p,2)=f_2(p)$.
+In particular, the decoder can be chosen as $\tr_S$ in a globally optimal
+joint rank-one pair.
+\end{theorem}
+\begin{proof}
+For every qubit channel $\mathcal A$, a recovery maximizing its average
+input--output fidelity can be chosen unitary~\cite[Theorem~1]{KBF}.
+Since $F_{\rm av}(\Phi)=(2\F(I_2/2,\Phi)+1)/3$ for a qubit CPTP map,
+the same is true for our objective. This theorem applies to
+$\mathcal A=\T_p\C_V$ for each isometry $V$. If $M_k$ are Kraus
+operators of $\T_p$ and $U$ is such a unitary recovery, cyclicity gives
+\[
+ \frac14\sum_k|\tr(UM_kV)|^2
+ =\frac14\sum_k|\tr(M_kVU)|^2.
+\]
+The matrix $VU$ is still an isometry. The unitary recovery is therefore
+absorbed into the encoder, proving the equality. The reverse inequality
+follows from feasibility of $\tr_S$.
+\end{proof}
+The cited qubit theorem follows by removing the recovery's Bloch translation
+without changing its objective and then using that every unital qubit channel
+is a mixture of unitary channels~\cite[Appendix~A]{KBF}. Its conclusion does
+not extend to arbitrary channels in dimension three.
+
+\section{The exact fixed-decoder optimum in every dimension}
+Put $n=d-1$ and define
+\begin{equation}\label{eq:AC}
+ A=\frac1d-d\lambda_3,\qquad
+ C_0=\frac{2A}{d}-2(\lambda_1-\lambda_2-\lambda_3)
+ \sqrt{\frac{\lambda_4\lambda_5}{d^2-1}}.
+\end{equation}
+These satisfy $A>0$ and $0<C_0<2A/d$. For example, with
+\begin{equation}\label{eq:q}
+ q=\frac ba=\sqrt{\frac{(d^2-1)(1-p)}{d^2-1+p}},\qquad
+ p=\frac{(d^2-1)(1-q^2)}{d^2-1+q^2},
+\end{equation}
+direct simplification gives
+\[
+ A=\frac{(d^2-1-q^2)[d^4-4d^2+2+2(d^2-1)q^2]}
+ {d(d^2-2)^2(d^2+q^2-1)},\qquad
+ \frac{C_0}{2A/d}=\frac{(1-q)(d^2+q-1)}{d^2-1-q^2}\in(0,1).
+\]
+
+\begin{theorem}\label{thm:fixed}
+For all $d\ge2$ and $0<p<1$, $f_d(p)$ is attained by
+\begin{equation}\label{eq:family}
+ V\ket0=x\ket{00}+z\sum_{i=1}^n\ket{ii},\qquad
+ V\ket j=\ket{j0}\ (j>0),\qquad x\ge0,\ z\le0,\ x^2+nz^2=1.
+\end{equation}
+Set
+\begin{gather}
+ \delta=C_0(A/d-C_0/4),\quad R=A^2-AC_0+dC_0^2/4,\quad
+ D(\mu)=\mu^2-A\mu+n\delta.\notag
+\end{gather}
+There is a unique root $A<\mu<dA$ of
+\begin{equation}\label{eq:quartic}
+ D(\mu)^2-n^2\bigl(R\mu^2-2nA\delta\mu+nd\delta^2\bigr)=0.
+\end{equation}
+For that root,
+\begin{gather}
+ f_d(p)=\lambda_3+\frac1d\left(An^2+\mu+
+ \frac{n^2(R\mu-nA\delta)}{D(\mu)}\right),\label{eq:answer}\\
+ x_* =\frac{n[(A-C_0/2)\mu-n\delta]}{D(\mu)},\qquad
+ z_*=-\frac{nC_0[\mu-(2A/d-C_0/2)]}{2D(\mu)}.\label{eq:optimizer}
+\end{gather}
+For $d=2$ this is also the joint optimum of Theorem~\ref{thm:qubit}.
+\end{theorem}
+
+\subsection{Reduction over the full complex encoder space}
+For arbitrary complex $V$, write
+$r_i=\tr(D_iV)$ and $z_i=\bra\Omega V\ket i$.
+Expanding the three Kraus groups of \eqref{eq:noise} yields
+\begin{equation}\label{eq:quadratic}
+ F(V,\tr_S)=\frac{\lambda_3}{d}\norm V_F^2+
+ \frac1d\left[A\norm r^2-\sqrt d\,C_0\operatorname{Re}(r^\dagger z)
+ +C_0\norm z^2\right].
+\end{equation}
+One way to check the expansion is to use
+$C_i=QD_i^\dagger$ and
+$H_i=(\ket\Omega\bra i-\sqrt{\lambda_5}C_i)/\sqrt{\lambda_4}$.
+The two nonconstant Kraus contributions are
+$(\lambda_1-\lambda_3)d^{-1}\sum_i|\langle C_i,V\rangle|^2$
+and $\lambda_2d^{-1}\sum_i|\langle H_i,V\rangle|^2$.
+Inserting $Q=aI+(b-a)P$ gives \eqref{eq:quadratic}.
+
+The first term is $\lambda_3$ on isometries. Write the bracket as $q(V)$.
+Its $2\times2$ coefficient matrix is
+\[
+ G=\begin{pmatrix}A&-\sqrt d C_0/2\\-\sqrt d C_0/2&C_0\end{pmatrix}\succ0.
+\]
+Duality for this positive quadratic form and the operator/nuclear norm
+duality give
+\begin{equation}\label{eq:dualnorm}
+ \max_{V^\dagger V=I}q(V)=
+ \max_{(\alpha,\beta)\ne0}
+ \frac{\norm{I\otimes\ket\alpha+\ket\Omega\beta^T}_*^2}
+ {(\alpha,\beta)^\dagger(G^{-1}\otimes I_d)(\alpha,\beta)}.
+\end{equation}
+Indeed the inner linear functional is
+$\alpha^\dagger r+\beta^\dagger z$; its maximum over isometries is the
+nuclear norm of the displayed rectangular matrix, attained by its polar
+isometry. Maxima interchange after normalizing the positive denominator.
+
+Let $a_0=\norm\alpha$, $b_0=\norm\beta$,
+$c_0=\operatorname{Re}(\alpha^\dagger\beta)$, and
+$k=|\alpha^\dagger\beta|^2$. The denominator in \eqref{eq:dualnorm}
+depends only on $a_0,b_0,c_0$. The Gram matrix of its numerator is
+\[
+ a_0^2 I+\overline\beta\beta^T+
+ \frac{\overline\alpha\beta^T+\overline\beta\alpha^T}{\sqrt d}.
+\]
+At most two eigenvalues differ from $a_0^2$. Their sum and product are
+\[
+ T=2a_0^2+b_0^2+2c_0/\sqrt d,\qquad
+ P_2=a_0^4+a_0^2b_0^2(1-1/d)+2a_0^2c_0/\sqrt d+k/d.
+\]
+Consequently the nuclear norm is
+$(d-2)a_0+\sqrt{T+2\sqrt{P_2}}$, which increases with $k$ at fixed
+$a_0,b_0,c_0$. Collinear complex vectors with a suitable relative phase
+realize $k=a_0^2b_0^2$ and preserve these other three invariants.
+Zero vectors are included by continuity. Under
+$M\mapsto(u\otimes\overline u)Mu^\dagger$, both spinors transform by
+$\overline u$, so the collinear vectors can be placed along $\ket0$.
+The polar isometry then has exactly the supports in \eqref{eq:family},
+with complex amplitudes $x,z$ and a common amplitude $z$ on $\ket{ii}$,
+$i>0$. Vanishing singular values admit extensions on these same supports.
+Thus the complex family attains the full maximum without averaging encoders.
+
+Substitution in \eqref{eq:quadratic} gives
+\begin{align}
+ q(V)={}&An^2+(A-nC_0/d)|x|^2+(n^2C_0/d)|z|^2\notag\\
+ &-\frac{n(d-2)C_0}{d}\operatorname{Re}(\overline xz)
+ +n(2A-C_0)\operatorname{Re}x-n^2C_0\operatorname{Re}z.\label{eq:phases}
+\end{align}
+Replacing $x,z$ by $|x|,-|z|$ increases or preserves every phase-dependent
+term. This proves the real reduction in \eqref{eq:family}.
+
+\subsection{A two-variable maximization and its exact dual}
+Let $w=(x,z)^T$, $W=\operatorname{diag}(1,n)$ and
+\[
+ H=\begin{pmatrix}
+ A-nC_0/d&-n(d-2)C_0/(2d)\\
+ -n(d-2)C_0/(2d)&n^2C_0/d
+ \end{pmatrix},\qquad
+ h=\begin{pmatrix}n(A-C_0/2)\\-n^2C_0/2\end{pmatrix}.
+\]
+The objective is $\lambda_3+d^{-1}(An^2+w^THw+2h^Tw)$ on $w^TWw=1$.
+The positive matrix $B=W^{-1/2}HW^{-1/2}$ has trace $A$ and determinant
+$n\delta>0$, hence $\lambda_{\max}(B)<A$. The secular function
+\[
+ \norm{(\mu I-B)^{-1}W^{-1/2}h}^2
+\]
+strictly decreases for $\mu>A$. At $\mu=A$, its first coordinate equals
+$x(A)=A(A-C_0/2)/\delta-n>1$. The last inequality follows from
+\[
+ A(A-C_0/2)-d\delta=A^2-3AC_0/2+dC_0^2/4>0
+ \quad(0<C_0<2A/d,\ d\ge2).
+\]
+At $\mu=dA$, its norm is less than one because
+$\norm{W^{-1/2}h}=n\sqrt R<nA$ and $\lambda_{\max}(B)<A$.
+There is therefore a unique secular root in $(A,dA)$. Solving
+$(\mu W-H)w=h$ gives \eqref{eq:optimizer}; imposing $w^TWw=1$ gives
+\eqref{eq:quartic}, with no extraneous roots in that interval.
+The formulas give $x_*>0$, $z_*<0$.
+
+For a directly checkable certificate, set
+\begin{equation}\label{eq:certificate}
+ S=\mu W-H\succ0,\quad w_*=S^{-1}h,\quad
+ \eta=h^TS^{-1}h=\frac{n^2(R\mu-nA\delta)}{D(\mu)},\quad
+ Z=\begin{pmatrix}\eta&-h^T\\-h&S\end{pmatrix}\succeq0.
+\end{equation}
+The Schur complement is zero, and
+$Z(1,w_*^T)^T=0$. On $w^TWw=1$ the exact identity
+\begin{equation}\label{eq:gap}
+ f_d(p)-F(V(w),\tr_S)=d^{-1}(w-w_*)^TS(w-w_*)\ge0
+\end{equation}
+proves the bound with equality at $w_*$. Equivalently $Z$ is dual to
+the lifted quadratic program and $(1,w_*^T)^T(1,w_*^T)$ is a matching
+rank-one primal matrix. This completes Theorem~\ref{thm:fixed}.
+
+\section{A decoder certificate for every encoder in the family}
+For a fixed isometry $V$, put $\mathcal A=\T_p\C_V$ and
+$K=J(\mathcal A^\dagger)/d^2$, where the input-first Choi convention is
+$J(\R)=\sum_{ij}\ket i\bra j\otimes\R(\ket i\bra j)$.
+The decoder SDP and its dual are
+\begin{equation}\label{eq:decoder-sdp}
+ \max_{X\succeq0,\ \tr_{\rm out}X=I_d}\tr(KX),\qquad
+ \min_{Y=Y^\dagger,\ Y\otimes I_d\succeq K}\tr Y.
+\end{equation}
+These normalizations follow immediately from \eqref{eq:fidelity}.
+
+\begin{proposition}\label{prop:decoder}
+For every real encoder \eqref{eq:family}, the identity reduced recovery,
+and therefore the physical decoder $\tr_S$, is optimal among all decoders.
+\end{proposition}
+\begin{proof}
+Write $z=-t$, $t\ge0$, $s=x-nt$, and put
+\[
+ \alpha=d\lambda_3,\quad\beta=dA,\quad c=d^2C_0/2\in(0,\beta),
+\]
+\[
+ a_0=\alpha+\beta x^2-c(2sx/d-2s^2/d^2),\quad
+ b_0=\alpha+\beta t^2+c(2st/d+2s^2/d^2),\quad
+ g=\beta x-cs/d.
+\]
+With $P_0=\ket0\bra0$, $\Pi=I-P_0$, direct evaluation of
+\eqref{eq:factorization} gives
+\[
+ \mathcal A(\ket0\bra0)=a_0P_0+b_0\Pi,\quad
+ \mathcal A(\ket j\bra j)=\alpha I+\beta\ket j\bra j\ (j>0),
+\]
+\[
+ \mathcal A(\ket0\bra j)=g\ket0\bra j\ (j>0),\qquad
+ \mathcal A(\ket i\bra j)=\beta\ket i\bra j\ (i,j>0,\ i\ne j).
+\]
+The adjoint relations determine the remaining matrix units. Take
+\begin{equation}\label{eq:Y}
+ Y=d^{-2}\big[(a_0+ng)P_0+(g+n\beta+\alpha)\Pi\big].
+\end{equation}
+On the span of $\ket{00}$ and $n^{-1/2}\sum_{j>0}\ket{jj}$,
+and on its orthogonal invariant subspaces, the slack is
+\begin{equation}\label{eq:decoderblocks}
+ \begin{aligned}
+ d^2(Y\otimes I-K)\ &\cong
+ g\begin{pmatrix}n&-\sqrt n\\-\sqrt n&1\end{pmatrix}
+ \oplus(a_0+ng-\alpha)I_n\\
+ &\quad\oplus(g+n\beta+\alpha-b_0)I_n
+ \oplus(g+n\beta)I_{n^2-1}.
+ \end{aligned}
+\end{equation}
+The last block is absent when $d=2$. To see positivity, first
+$g=(\beta-c/d)x+cnt/d\ge0$. Also
+$s(x+t)\le x^2$, since $x,t\ge0$. Therefore
+\[
+ a_0-\alpha=\beta x^2-\frac{2cn}{d^2}s(x+t)
+ \ge(\beta-2cn/d^2)x^2\ge0,
+\]
+\[
+ b_0-\alpha=\beta t^2+\frac{2c}{d^2}s(x+t)
+ \le\beta t^2+\frac{\beta}{n}x^2=\frac\beta n.
+\]
+Here $2cn/d^2\le\beta$ follows from $c<\beta$ and $2n\le d^2$.
+Every block in \eqref{eq:decoderblocks} is positive semidefinite.
+The slack annihilates $\ket I\!\rangle=\sum_i\ket{ii}$,
+the Choi vector of the identity recovery. Its dual value thus equals
+the identity recovery's primal value, proving optimality.
+\end{proof}
+
+\section{Exact instances and the remaining global certificate}
+For $d=2$, the formula is particularly simple. Define
+\[
+ k=\frac{3-2p}{3+p},\quad h_0=\frac{1+p}{2},\quad
+ w_0=\sqrt{\frac{(3+p)(1-p)}{12}},\quad
+ A_2=k(h_0+w_0),\quad B_2=k(h_0-w_0).
+\]
+If $\xi>A_2$ is the unique root there of
+\[
+ \xi^4-2(A_2+B_2)\xi^3+4A_2B_2\xi^2-(A_2B_2)^2=0,
+\]
+then the joint fidelity is
+\[
+ F_1^{\rm joint}(p,2)=\frac14\left(1+\xi+
+ \frac{A_2^2}{\xi-A_2}+\frac{B_2^2}{\xi-B_2}\right),\quad
+ x_* =\frac{A_2}{\xi-A_2},\quad z_*=-\frac{B_2}{\xi-B_2}.
+\]
+This is also obtained directly from the circle objective
+$[1+A_2(x^2+2x)+B_2(z^2-2z)]/4$.
+At $p=9/13$, $A_2=105/208$, $B_2=49/208$, and
+$F_1^{\rm joint}\simeq0.6462632754$.
+
+For a qutrit instance choose $q=1/2$, hence $p=8/11$. Then
+\[
+ \lambda_3=\frac4{1617},\quad A=\frac{527}{1617},\quad
+ C_0=\frac{578}{4851}.
+\]
+Writing $T=1617\mu$, the specified quartic becomes
+\begin{equation}\label{eq:qutritquartic}
+ T^4-1054T^3-440147T^2+155349060T-12068784500=0,
+ \qquad 1305<T<1306.
+\end{equation}
+Equations~\eqref{eq:optimizer}, \eqref{eq:certificate}, and \eqref{eq:Y}
+give exact encoder and decoder certificates over this real root field.
+Numerically $x_*\simeq0.9632339434$, $z_*\simeq-0.1899741696$, and
+\[
+ f_3(8/11)\simeq0.8922491436
+ <F^{\rm unrestricted}(8/11,3)=\frac{69}{77}.
+\]
+The open target is to prove or refute
+\begin{equation}\label{eq:open}
+ \tr(K(V)X)\le f_3(8/11)\quad
+ \text{for all }V^\dagger V=I_3,\ X\succeq0,\ \tr_{\rm out}X=I_3.
+\end{equation}
+
+There is an exact obstruction to the simplest polynomial certificate even
+with the decoder fixed. No identity expressing $f_d(p)-F(V,\tr_S)$ as a sum
+of squares of affine real polynomials in $V$, plus constant real multipliers
+of the equations $V^\dagger V-I=0$, can hold. Indeed let
+$C_i=QD_i^\dagger$, $i=0,\ldots,d-1$, be the unrestricted optimal encoder's
+Kraus operators~\cite[Eq.~(19)]{LiJiang}. Assign probability $1/(2d)$ to
+each $V=\pm\sqrt d\,C_i$. This distribution is not supported on isometries,
+but it satisfies
+\[
+ \mathbb E[V^\dagger V]=I,\qquad
+ \mathbb E[F(V,\tr_S)]=\sum_i F(C_i,\tr_S)=\lambda_1>f_d(p).
+\]
+The last strict inequality follows from the rank requirement for unrestricted
+optimality in Ref.~\cite{LiJiang}, Sec.~III. Taking expectations in the
+hypothetical identity is a contradiction. Thus a quadratic moment relaxation
+loses precisely the encoder constraint at issue. This obstruction does not
+rule out degree-four certificates. A concrete next step is a symmetry-reduced
+degree-four certificate for \eqref{eq:open}, preserving the isometry equations
+rather than replacing the encoder by its averaged Choi matrix.
+
+\section{A uniform question beyond this family}
+Equation~(16) of Ref.~\cite{LiJiang} already bounds the gap with both encoder
+and decoder optimized. This family approaches its small-error ceiling to
+second order as $d$ grows; it does not attain that bound at finite $d$.
+A precise broader question is the sharp coefficient at fixed logical and
+physical dimensions. For qubits encoded into dimension four, let
+\[
+ c_{2,4}=\limsup_{\eta\downarrow0}\ \sup_{\substack{
+ \mathcal N:\mathsf L(\mathbb C^4)\to\mathsf L(\mathbb C^4)\ {\rm CPTP}\\
+ 0<\varepsilon^{\rm opt}(\mathcal N)\le\eta}}
+ \frac{\Delta^{\rm opt}(\mathcal N)}{[\varepsilon^{\rm opt}(\mathcal N)]^2},
+\]
+where $\varepsilon^{\rm opt}=1-F^{\rm unrestricted}$ and
+$\Delta^{\rm opt}=F^{\rm unrestricted}-F_1^{\rm joint}$ at $\tau=I_2/2$.
+Their Eqs.~(16) and (25) give
+\[
+ \frac19\le c_{2,4}\le\frac14.
+\]
+Resolving this interval requires either a new noise family approaching
+$1/4$ or a quantitative incompatibility among the near-equality conditions
+in the rank-one replacement bound and joint optimality. This is distinct
+from finding an exact solution for the present model.
+
+\paragraph{Verification and computer assistance.}
+The conclusions above are mathematical proofs, not Lean formalizations.
+The accompanying source checks symbolic identities and finite exact matrix
+certificates with rational arithmetic; numerical approximations serve to
+identify values. Codex assisted with derivations, verification code, and
+preparation of this draft.
+
+\begin{thebibliography}{9}
+\bibitem{LiJiang} B. Li and L. Jiang,
+\emph{High-Rank Encoding Can Improve Approximate Quantum Error Correction},
+arXiv:2609.00778v1 (2026),
+\url{https://arxiv.org/abs/2609.00778v1}.
+\bibitem{KBF} V. Karimipour, F. Benatti, and R. Floreanini,
+\emph{Quasi inversion of qubit channels}, Phys. Rev. A \textbf{101},
+032109 (2020), doi:10.1103/PhysRevA.101.032109,
+\url{https://arxiv.org/abs/1909.06118v5}.
+\end{thebibliography}
+\end{document}
