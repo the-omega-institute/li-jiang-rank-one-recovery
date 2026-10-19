@@ -1,3 +1,10 @@
+# Current joint-optimality result
+
+The note dated 20 October 2026 proves the joint optimum in every dimension.
+See [JOINT-README.md](JOINT-README.md) for its additional exact checker,
+certificate and independent implementation. The documentation below describes
+the inherited fixed-decoder checks and archived searches.
+
 # Verification source
 
 The readable all-parameter proofs are in ../note.tex and ../note.pdf.

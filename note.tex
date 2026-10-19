@@ -14,21 +14,25 @@
 \newcommand{\norm}[1]{\lVert#1\rVert}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}{Proposition}
-\title{Rank-one encoding and recovery for the Li--Jiang channel}
+\newtheorem{lemma}{Lemma}
+\title{Exact rank-one encoding and recovery for the Li--Jiang channel}
 \author{Haobo Ma \and Wenlin Zhang}
-\date{17 October 2026}
+\date{20 October 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
 For the Li--Jiang noise family, we prove that the partial-trace decoder can
 be chosen in a jointly optimal rank-one encoder--decoder pair when the
-logical dimension is two, for every $0<p<1$. In every logical dimension
+logical dimension is any $d\ge2$, for every $0<p<1$, over all complex
+rank-one CPTNI encoders and all CPTNI decoders. The qutrit proof combines
+Li--Jiang's rank-one replacement bound with a sufficient condition for a
+unitary recovery to solve the full recovery SDP; a coarser fidelity estimate
+extends the argument to $d\ge4$. In every logical dimension
 $d\ge2$, we determine the full complex rank-one optimum with partial trace
 fixed, by a two-amplitude reduction and a specified quartic root.
 An explicit decoder SDP dual certificate proves that partial trace is an
-optimal decoder for every encoder in this real family. Joint global
-optimality for $d\ge3$ remains open. We give an exact qutrit instance and an
-obstruction to the quadratic relaxation of the remaining global inequality.
+optimal decoder for every encoder in this real family. We give an exact
+algebraic certificate for the joint qutrit optimum at $p=8/11$.
 \end{abstract}
 
 \section{The channel and the joint question}
@@ -36,12 +40,13 @@ Li and Jiang~\cite{LiJiang} construct a noise family whose unrestricted
 optimal fidelity requires higher-rank encoding. We study whether the
 partial-trace decoder can be chosen in a jointly optimal rank-one pair,
 and determine the exact fidelity when that decoder is fixed.
-Theorem~\ref{thm:qubit} answers the
-joint question for $d=2$. Theorem~\ref{thm:fixed} gives the fixed-decoder
+Theorems~\ref{thm:qubit} and~\ref{thm:joint} answer the
+joint question in every dimension. The argument uses a general
+recovery criterion and a coarse feasible fidelity above $3/4$; it does not
+require a symmetry reduction of the nonconvex encoder set.
+Theorem~\ref{thm:fixed} gives the fixed-decoder
 formula for all $d$, and Proposition~\ref{prop:decoder} supplies a matching
-decoder certificate throughout the attaining family. These last two
-certificates are best-response statements; their combination does not prove
-joint global optimality for $d\ge3$.
+decoder certificate throughout the attaining family.
 
 We use the model of Eqs.~(18)--(23) of Ref.~\cite{LiJiang}. Let
 $L=S=\mathbb C^d$, $C=L\otimes S$, $\tau=I_d/d$, and
@@ -129,6 +134,150 @@ without changing its objective and then using that every unital qubit channel
 is a mixture of unitary channels~\cite[Appendix~A]{KBF}. Its conclusion does
 not extend to arbitrary channels in dimension three.
 
+\subsection{A recovery criterion and joint optimality in every dimension}
+For a CPTP channel $\mathcal A:\mathsf L(\mathbb C^d)\to
+\mathsf L(\mathbb C^d)$, write
+\[
+ u(\mathcal A)=\max_{U\ {\rm unitary}}\F(I_d/d,\operatorname{Ad}_U\mathcal A),
+ \qquad
+ t(\mathcal A)=\max_{\R\ {\rm CPTP}}\F(I_d/d,\R\mathcal A).
+\]
+The unitary quasi-inverse theorem used above is special to qubits:
+higher-dimensional channels can require nonunitary quasi-inverses~\cite{SSMZK}.
+The following sufficient condition applies in any dimension.
+
+\begin{lemma}\label{lem:unitary}
+If $f=u(\mathcal A)>0$ and
+\begin{equation}\label{eq:threshold}
+ (d+1)f-(d-1)\sqrt f-1\ge0,
+\end{equation}
+then $t(\mathcal A)=u(\mathcal A)$. If $d=3$ and
+$t(\mathcal A)\ge3/4$, an optimal recovery can be chosen unitary.
+\end{lemma}
+\begin{proof}
+Absorb a maximizing unitary into $\mathcal A$, so identity recovery
+maximizes the unitary objective. For Kraus operators $A_i$, stationarity
+under $\exp(i\theta H)$ for every Hermitian $H$ implies that
+\[
+ B=\sum_i\overline{\tr A_i}\,A_i
+ \quad\text{is Hermitian}.
+\]
+Indeed the derivative of the fidelity is $-2d^{-2}\operatorname{Im}\tr(HB)$.
+The operator $A_0=B/(d\sqrt f)$ is a normalized linear combination of the
+Kraus operators, hence can be included in a Kraus representation and is a
+contraction. It is Hermitian and has trace $d\sqrt f$. Since each of its
+eigenvalues is at most one,
+\begin{equation}\label{eq:mineig}
+ \lambda_{\min}(A_0)\ge d\sqrt f-(d-1).
+\end{equation}
+
+Use input-first vectorization $\ket{M}\!\rangle=\sum_j\ket j\otimes M\ket j$.
+The recovery SDP has objective matrix $K=J(\mathcal A^\dagger)/d^2$,
+as in~\eqref{eq:decoder-sdp}. Set
+\[
+ Y=\frac{\sqrt f}{d}A_0^T,\qquad S=Y\otimes I-K,
+ \qquad e=\ket I\!\rangle/\sqrt d,\quad P_\perp=I-ee^\dagger.
+\]
+Then $\tr Y=f$ and $Se=0$, since
+$K\ket I\!\rangle=d^{-2}\ket{B^\dagger}\!\rangle$
+and $(Y\otimes I)\ket I\!\rangle=(\sqrt f/d)\ket{A_0}\!\rangle$.
+Trace preservation gives $\tr K=1/d$, and
+$e^\dagger Ke=f/d$, so
+$\tr(P_\perp K P_\perp)=(1-f)/d$.
+For every unit vector $v\perp e$, positivity of $K$ and~\eqref{eq:mineig} give
+\[
+ v^\dagger Sv\ge\lambda_{\min}(Y)-\tr(P_\perp K P_\perp)
+ \ge\frac{(d+1)f-(d-1)\sqrt f-1}{d}.
+\]
+Thus $S\succeq0$ under~\eqref{eq:threshold}; $Y$ and identity recovery
+are matching dual and primal solutions.
+
+For the qutrit assertion, take a recovery attaining $t=t(\mathcal A)$.
+Cyclicity of Kraus traces gives $\F(I_3/3,\R\mathcal A)=
+\F(I_3/3,\mathcal A\R)$. Apply the CPTP version of
+Li--Jiang's Theorem~1~\cite{LiJiang} with channel $\mathcal A$ and encoder
+$\R$, both acting on $\mathbb C^3$. Its rank-one CPTP replacement is a
+square isometry, hence a unitary. With $\varepsilon=1-t\le1/4$ the bound is
+\[
+ f\ge t-\frac29\bigl(1-\sqrt{1-3\varepsilon}\bigr)^2
+ \ge\frac34-\frac1{18}=\frac{25}{36}.
+\]
+For $\sqrt f\ge5/6$, $4f-2\sqrt f-1\ge1/9>0$.
+The first assertion therefore applies.
+\end{proof}
+
+The same replacement theorem also gives, in every dimension,
+\begin{equation}\label{eq:square-replacement}
+ u(\mathcal A)\ge t(\mathcal A)^2.
+\end{equation}
+For its first branch this follows from $\ell_{1/d}(\varepsilon)\le\varepsilon$
+and the lower bound $(1-\ell_{1/d}(\varepsilon))^2$ in its proof,
+Eq.~(8); its second branch is Eq.~(11). Consequently, if
+$t(\mathcal A)\ge(d+2)/(d+3)$, condition~\eqref{eq:threshold} holds:
+putting $r=(d+2)/(d+3)$ gives
+\[
+ (d+1)r^2-(d-1)r-1=\frac{d+1}{(d+3)^2}>0,
+\]
+and the quadratic $(d+1)s^2-(d-1)s-1$ increases for $s\ge r$.
+
+\begin{theorem}\label{thm:joint}
+For every $d\ge2$ and $0<p<1$, $F_1^{\rm joint}(p,d)=f_d(p)$.
+An optimal rank-one pair consists of the complex-space fixed-decoder
+optimizer of Theorem~\ref{thm:fixed} and $\tr_S$.
+\end{theorem}
+\begin{proof}
+The case $d=2$ is Theorem~\ref{thm:qubit}. First take $d=3$.
+The product isometry $V_0\ket j=\ket{j0}$, followed by $\tr_S$, has fidelity
+\begin{equation}\label{eq:product}
+ F_0(q)=\frac{-128q^4+256q^3+711q^2+752q+3512}{567(q^2+8)},
+ \qquad q=\sqrt{\frac{8(1-p)}{8+p}}\in(0,1).
+\end{equation}
+This follows by substitution in~\eqref{eq:noise}, or in the full encoder
+quadratic form~\eqref{eq:quadratic}. Its exact positive gap is
+\begin{equation}\label{eq:product-gap}
+ F_0(q)-\frac34=
+ \frac{440+3008q+1143q^2+512q^3+512q^3(1-q)}{2268(q^2+8)}>0.
+\end{equation}
+Take a jointly maximizing isometry $V$ and CPTP reduced recovery, whose
+existence follows from compactness and the reductions above. The square
+qutrit channel $\mathcal A=\T_p\C_V$ satisfies
+$t(\mathcal A)\ge F_0(q)>3/4$. Lemma~\ref{lem:unitary} therefore supplies
+a unitary optimal recovery $U$. Cyclicity gives
+\[
+ \frac19\sum_k|\tr(UM_kV)|^2
+ =\frac19\sum_k|\tr(M_kVU)|^2\le f_3(p),
+\]
+where $M_k$ are Kraus operators of $\T_p$, and $VU$ is still an isometry.
+The reverse inequality follows from feasibility of $\tr_S$.
+
+For $d\ge4$, the same product isometry has fidelity
+\[
+ F_0=\lambda_3+dA-\frac{d^2-1}{d^2}C_0,
+\]
+where $A,C_0$ are defined in~\eqref{eq:AC}. Using $0<C_0<2A/d$,
+$A=1/d-d\lambda_3$, and
+$\lambda_3=2p^2/[(d^2-2)^2(d^2-1+p)]\le
+2/[d^2(d^2-2)^2]$, we obtain
+\begin{equation}\label{eq:product-general}
+ F_0\ge m_d:=\frac{d^6-4d^4+4d^2-2}{d^4(d^2-2)}
+ >\frac{d+2}{d+3}.
+\end{equation}
+For completeness, the numerator of the last difference, over the positive
+denominator $d^4(d+3)(d^2-2)$, is
+\[
+ d^6-2d^5-8d^4+4d^3+12d^2-2d-6.
+\]
+Putting $k=d-4\ge0$ rewrites this numerator as
+\[
+ k^6+22k^5+192k^4+836k^3+1852k^2+1822k+434>0.
+\]
+The bound on $\lambda_3$ follows since $p^2/(d^2-1+p)$ increases on
+$[0,1]$. Every jointly maximizing isometry thus produces a square channel
+with $t(\mathcal A)\ge F_0>(d+2)/(d+3)$. Equations~\eqref{eq:square-replacement}
+and~\eqref{eq:threshold} supply a unitary optimal recovery, and the same
+trace cyclicity absorbs it into the encoder.
+\end{proof}
+
 \section{The exact fixed-decoder optimum in every dimension}
 Put $n=d-1$ and define
 \begin{equation}\label{eq:AC}
@@ -170,7 +319,7 @@ For that root,
  x_* =\frac{n[(A-C_0/2)\mu-n\delta]}{D(\mu)},\qquad
  z_*=-\frac{nC_0[\mu-(2A/d-C_0/2)]}{2D(\mu)}.\label{eq:optimizer}
 \end{gather}
-For $d=2$ this is also the joint optimum of Theorem~\ref{thm:qubit}.
+This is also the joint optimum of Theorem~\ref{thm:joint}.
 \end{theorem}
 
 \subsection{Reduction over the full complex encoder space}
@@ -204,7 +353,7 @@ duality give
  {(\alpha,\beta)^\dagger(G^{-1}\otimes I_d)(\alpha,\beta)}.
 \end{equation}
 Indeed the inner linear functional is
-$\alpha^\dagger r+\beta^\dagger z$; its maximum over isometries is the
+$\alpha^\dagger r+\beta^\dagger z$; its maximum absolute value over isometries is the
 nuclear norm of the displayed rectangular matrix, attained by its polar
 isometry. Maxima interchange after normalizing the positive denominator.
 
@@ -226,7 +375,7 @@ $(d-2)a_0+\sqrt{T+2\sqrt{P_2}}$, which increases with $k$ at fixed
 $a_0,b_0,c_0$. Collinear complex vectors with a suitable relative phase
 realize $k=a_0^2b_0^2$ and preserve these other three invariants.
 Zero vectors are included by continuity. Under
-$M\mapsto(u\otimes\overline u)Mu^\dagger$, both spinors transform by
+$M\mapsto(u\otimes\overline u)Mu^\dagger$, both vectors transform by
 $\overline u$, so the collinear vectors can be placed along $\ket0$.
 The polar isometry then has exactly the supports in \eqref{eq:family},
 with complex amplitudes $x,z$ and a common amplitude $z$ on $\ket{ii}$,
@@ -353,7 +502,7 @@ the Choi vector of the identity recovery. Its dual value thus equals
 the identity recovery's primal value, proving optimality.
 \end{proof}
 
-\section{Exact instances and the remaining global certificate}
+\section{Exact instances and a relaxation obstruction}
 For $d=2$, the formula is particularly simple. Define
 \[
  k=\frac{3-2p}{3+p},\quad h_0=\frac{1+p}{2},\quad
@@ -389,14 +538,16 @@ Equations~\eqref{eq:optimizer}, \eqref{eq:certificate}, and \eqref{eq:Y}
 give exact encoder and decoder certificates over this real root field.
 Numerically $x_*\simeq0.9632339434$, $z_*\simeq-0.1899741696$, and
 \[
- f_3(8/11)\simeq0.8922491436
+ F_1^{\rm joint}(8/11,3)=f_3(8/11)\simeq0.8922491436
  <F^{\rm unrestricted}(8/11,3)=\frac{69}{77}.
 \]
-The open target is to prove or refute
+In particular, Theorem~\ref{thm:joint} proves the global certificate
 \begin{equation}\label{eq:open}
  \tr(K(V)X)\le f_3(8/11)\quad
  \text{for all }V^\dagger V=I_3,\ X\succeq0,\ \tr_{\rm out}X=I_3.
 \end{equation}
+The root isolation, fixed-decoder gap matrix and recovery criterion together
+certify this value over the entire complex joint feasible set.
 
 There is an exact obstruction to the simplest polynomial certificate even
 with the decoder fixed. No identity expressing $f_d(p)-F(V,\tr_S)$ as a sum
@@ -414,9 +565,8 @@ The last strict inequality follows from the rank requirement for unrestricted
 optimality in Ref.~\cite{LiJiang}, Sec.~III. Taking expectations in the
 hypothetical identity is a contradiction. Thus a quadratic moment relaxation
 loses precisely the encoder constraint at issue. This obstruction does not
-rule out degree-four certificates. A concrete next step is a symmetry-reduced
-degree-four certificate for \eqref{eq:open}, preserving the isometry equations
-rather than replacing the encoder by its averaged Choi matrix.
+rule out degree-four certificates. The qutrit proof above bypasses this
+relaxation by applying the recovery criterion before optimizing the encoder.
 
 \section{A uniform question beyond this family}
 Equation~(16) of Ref.~\cite{LiJiang} already bounds the gap with both encoder
@@ -445,8 +595,8 @@ from finding an exact solution for the present model.
 The conclusions above are mathematical proofs, not Lean formalizations.
 The accompanying source checks symbolic identities and finite exact matrix
 certificates with rational arithmetic; numerical approximations serve to
-identify values. Codex assisted with derivations, verification code, and
-preparation of this draft.
+identify values. Haobo Ma and Wenlin Zhang used AI tools for search,
+double-checking and proofreading.
 
 \begin{thebibliography}{9}
 \bibitem{LiJiang} B. Li and L. Jiang,
@@ -457,5 +607,11 @@ arXiv:2609.00778v1 (2026),
 \emph{Quasi inversion of qubit channels}, Phys. Rev. A \textbf{101},
 032109 (2020), doi:10.1103/PhysRevA.101.032109,
 \url{https://arxiv.org/abs/1909.06118v5}.
+\bibitem{SSMZK} F. Shahbeigi, K. Sadri, M. Moradi, K. \.Zyczkowski,
+and V. Karimipour,
+\emph{Quasi-inversion of quantum and classical channels in finite dimensions},
+J. Phys. A: Math. Theor. \textbf{54}, 345301 (2021),
+doi:10.1088/1751-8121/ac13db,
+\url{https://arxiv.org/abs/2104.06062v3}.
 \end{thebibliography}
 \end{document}
